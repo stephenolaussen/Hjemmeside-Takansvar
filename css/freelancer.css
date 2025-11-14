@@ -503,3 +503,9 @@ fieldset[disabled] .btn-success.active {
   opacity: 0;
   display: none;
 }
+#BestillGratisTaksjekk {
+  display: block;
+  margin: 0 auto;
+  display: inline-block;
+  float: none;
+}

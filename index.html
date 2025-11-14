@@ -76,7 +76,10 @@
                         <hr class="star-light">
                         <span class="skills">Taket er husets femte og viktigste fasade.<br/>
                         Med kontroll over taket får du trygghet i hjemmet – og unngår unødvendige kostnader.<br/>
-                        Uten en plan for taket oppnår man sjelden det beste resultatet.</span>
+                        Uten en plan for taket oppnår man sjelden det beste resultatet. 
+                        <br>
+                        <br>
+                        Firma farger Nic? Tenkte stort bilde her (grønt)!</span>
                         <div style="margin-top: 30px;">
                             <a href="#kontakt" class="btn btn-lg btn-outline page-scroll">
                                 <i class="fa fa-check"></i> Bestill gratis taksjekk
@@ -221,7 +224,7 @@
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center" style="margin-top: 30px;">
                     <a href="#kontakt" class="btn btn-lg btn-outline page-scroll">
-                        <i class="fa fa-shield"></i> Les mer om Takansvar Garanti
+                        <i class="fa fa-shield"></i> Les mer om Takansvar Garanti. Vil du ha dette Nic?
                     </a>
                 </div>
             </div>
@@ -242,14 +245,14 @@
             </div>
             <div class="row">
                 <div class="col-md-6 text-center">
-                        <button id="bestillTaksjekkBtn" class="btn btn-lg btn-primary" style="margin: 10px;">
-                            <i class="fa fa-check"></i> Bestill gratis taksjekk
-                        </button>
+                    <button id="bestillTaksjekkBtn" class="btn btn-lg btn-primary" style="margin: 10px;">
+                        <i class="fa fa-check"></i> Bestill gratis taksjekk
+                    </button>
                 </div>
                 <div class="col-md-6 text-center">
-                    <a href="#" class="btn btn-lg btn-outline" style="margin: 10px;">
+                    <button id="kontaktSpmBtn" class="btn btn-lg btn-default" style="margin: 10px; transition: transform 0.2s;">
                         <i class="fa fa-phone"></i> Bli kontaktet for spørsmål
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -258,6 +261,38 @@
     <!-- Footer -->
 
         <!-- Bestill gratis taksjekk Modal -->
+                <!-- Bli kontaktet for spørsmål Modal -->
+                <div class="modal fade" id="kontaktSpmModal" tabindex="-1" role="dialog" aria-labelledby="kontaktSpmModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Lukk"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="kontaktSpmModalLabel">Bli kontaktet for spørsmål</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="kontaktSpmForm">
+                                    <div class="form-group">
+                                        <label for="kontaktSpmNavn">Navn</label>
+                                        <input type="text" class="form-control" id="kontaktSpmNavn" name="navn" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="kontaktSpmTelefon">Telefon</label>
+                                        <input type="tel" class="form-control" id="kontaktSpmTelefon" name="telefon" required pattern="[0-9]{8}" placeholder="8 siffer">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="kontaktSpmEmail">E-post</label>
+                                        <input type="email" class="form-control" id="kontaktSpmEmail" name="email" required>
+                                    </div>
+                                    <input type="hidden" name="skjematype" value="Bli kontaktet for spørsmål">
+                                    <div id="kontaktSpmBekreftelse" style="display:none;" class="alert alert-success"></div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success">Send inn</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         <div class="modal fade" id="taksjekkModal" tabindex="-1" role="dialog" aria-labelledby="taksjekkModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -283,8 +318,11 @@
                                 <label for="taksjekkEmail">E-post</label>
                                 <input type="email" class="form-control" id="taksjekkEmail" name="email" required>
                             </div>
+                            <input type="hidden" name="skjematype" value="Bestilling av gratis taksjekk">
                             <div id="taksjekkBekreftelse" style="display:none;" class="alert alert-success"></div>
-                            <button type="submit" class="btn btn-success">Send inn</button>
+                            <div class="text-center">
+                            <button id="BestillGratisTaksjekk"type="submit" class="btn btn-success">Send inn</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -296,9 +334,9 @@
                 <div class="row">
                     <div class="footer-col col-md-4">
                         <h3>Kontaktinformasjon</h3>
-                        <p>[Adresse kommer]<br>
-                        [Telefon kommer]<br>
-                        [E-post kommer]</p>
+                        <p>[Adresse Trenger dette Nic]<br>
+                        [Telefon Trenger dette Nic]<br>
+                        [E-post Trenger dette Nic]</p>
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>Følg oss</h3>
@@ -350,7 +388,40 @@
 
     <!-- Theme JavaScript -->
     <script src="js/freelancer.min.js"></script>
-    <script src="index.js"></script>
+        <script src="index.js"></script>
+        <style>
+        #kontaktSpmBtn:hover {
+            transform: scale(1.08);
+        }
+        </style>
+        <script>
+        // Åpne modal for kontaktspørsmål
+        document.addEventListener('DOMContentLoaded', function() {
+            var kontaktBtn = document.getElementById('kontaktSpmBtn');
+            if (kontaktBtn) {
+                kontaktBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    $("#kontaktSpmModal").modal('show');
+                });
+            }
+            // Enkel validering og bekreftelse for kontaktspørsmål
+            var kontaktForm = document.getElementById('kontaktSpmForm');
+            if (kontaktForm) {
+                kontaktForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    if (kontaktForm.checkValidity()) {
+                        document.getElementById('kontaktSpmBekreftelse').style.display = 'block';
+                        document.getElementById('kontaktSpmBekreftelse').innerText = 'Takk! Vi tar kontakt snarest.';
+                        kontaktForm.reset();
+                        setTimeout(function() {
+                            $("#kontaktSpmModal").modal('hide');
+                            document.getElementById('kontaktSpmBekreftelse').style.display = 'none';
+                        }, 2000);
+                    }
+                });
+            }
+        });
+        </script>
 </body>
 
 </html>
